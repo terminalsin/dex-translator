@@ -37,7 +37,8 @@ public class IRCodeHacking {
 								 @Nonnull ProgramMethod method,
 								 @Nonnull AppView<?> appView,
 								 @Nonnull Origin origin) {
-		MethodConversionOptions.MutableMethodConversionOptions conversionOptions = new MethodConversionOptions.MutableMethodConversionOptions(appView.options());
+		MethodConversionOptions.MutableMethodConversionOptions conversionOptions = new MethodConversionOptions.MutableMethodConversionOptions(
+				appView.options().isGeneratingClassFiles() ? MethodConversionOptions.Target.CF : MethodConversionOptions.Target.DEX, appView.options());
 		return buildIR(dexCode, method, appView, origin, conversionOptions);
 	}
 
